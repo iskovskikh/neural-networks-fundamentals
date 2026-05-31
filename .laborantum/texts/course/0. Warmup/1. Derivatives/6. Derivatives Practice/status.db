@@ -1,4 +1,245 @@
 {
-    "correct": 0,
-    "error": "[NbClientApp] Executing .laborantum/texts/course/0. Warmup/1. Derivatives/6. Derivatives Practice/task.ipynb\n0.00s - Debugger warning: It seems that frozen modules are being used, which may\n0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n0.00s - to python to disable frozen modules.\n0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n0.00s - Debugger warning: It seems that frozen modules are being used, which may\n0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n0.00s - to python to disable frozen modules.\n0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n[NbClientApp] Executing notebook with kernel: python3\nTraceback (most recent call last):\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/bin/jupyter-execute\", line 10, in <module>\n    sys.exit(main())\n             ^^^^^^\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/jupyter_core/application.py\", line 284, in launch_instance\n    super().launch_instance(argv=argv, **kwargs)\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/traitlets/config/application.py\", line 1081, in launch_instance\n    app.initialize(argv)\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/traitlets/config/application.py\", line 118, in inner\n    return method(app, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/nbclient/cli.py\", line 161, in initialize\n    self.run_notebook(path)\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/nbclient/cli.py\", line 215, in run_notebook\n    client.execute()\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/jupyter_core/utils/__init__.py\", line 165, in wrapped\n    return loop.run_until_complete(inner)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/arch/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/asyncio/base_events.py\", line 654, in run_until_complete\n    return future.result()\n           ^^^^^^^^^^^^^^^\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/nbclient/client.py\", line 709, in async_execute\n    await self.async_execute_cell(\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/nbclient/client.py\", line 1062, in async_execute_cell\n    await self._check_raise_for_error(cell, cell_index, exec_reply)\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/nbclient/client.py\", line 918, in _check_raise_for_error\n    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)\nnbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:\n------------------\nxs = np.linspace(\n    -2*np.pi, \n    2*np.pi, \n    1000 # you can change this value. Check 100, 200, 500, 1000\n)\n\nanswer['1D'] = {}\n\nplt.figure(figsize=(96, 24))\nindex = 0\nfor f, df, ddf in zip(fs, dfs, ddfs):\n    index += 1\n    df_x = df(xs)\n    ddf_x = ddf(xs)\n\n    df_x_approx = finite_differences(f(xs), xs)\n    ddf_x_approx = finite_differences(df_x_approx, xs[:-1])\n    \n    answer['1D']['d' + str(index)] = df_x[~np.isnan(df_x)]\n    answer['1D']['dd' + str(index)] = ddf_x[~np.isnan(ddf_x)]\n\n    answer['1D']['d' + str(index) + '_approx'] = df_x_approx[~np.isnan(df_x_approx)]\n    answer['1D']['dd' + str(index) + '_approx'] = ddf_x_approx[~np.isnan(ddf_x_approx)]\n    \n\n    plt.subplot(3, 8, index)\n    plt.plot(xs, f(xs), 'o')\n    plt.legend(['Analytical'])\n    plt.grid()\n    plt.title(str(index))\n\n    plt.subplot(3, 8, 8 + index)\n    plt.plot(xs, df_x, 'o')\n    plt.plot(xs[:-1], df_x_approx, 'o')\n    plt.legend(['Analytical', 'Finite differences'])\n    plt.grid()\n    plt.title(str(index))\n\n\n    plt.subplot(3, 8, 16 + index)\n    plt.plot(xs, ddf_x, 'o')\n    plt.plot(xs[:-2], ddf_x_approx, 'o')\n    plt.legend(['Analytical', 'Finite differences'])\n    plt.grid()\n    plt.title(str(index))\n\n------------------\n\n\n\u001b[31m---------------------------------------------------------------------------\u001b[39m\n\u001b[31mTypeError\u001b[39m                                 Traceback (most recent call last)\n\u001b[36mCell\u001b[39m\u001b[36m \u001b[39m\u001b[32mIn[7]\u001b[39m\u001b[32m, line 20\u001b[39m\n\u001b[32m     16\u001b[39m     df_x_approx = finite_differences(f(xs), xs)\n\u001b[32m     17\u001b[39m     ddf_x_approx = finite_differences(df_x_approx, xs[:-\u001b[32m1\u001b[39m])\n\u001b[32m     18\u001b[39m \n\u001b[32m     19\u001b[39m     answer[\u001b[33m'1D'\u001b[39m][\u001b[33m'd'\u001b[39m + str(index)] = df_x[~np.isnan(df_x)]\n\u001b[32m---> \u001b[39m\u001b[32m20\u001b[39m     answer[\u001b[33m'1D'\u001b[39m][\u001b[33m'dd'\u001b[39m + str(index)] = ddf_x[~np.isnan(ddf_x)]\n\u001b[32m     21\u001b[39m \n\u001b[32m     22\u001b[39m     answer[\u001b[33m'1D'\u001b[39m][\u001b[33m'd'\u001b[39m + str(index) + \u001b[33m'_approx'\u001b[39m] = df_x_approx[~np.isnan(df_x_approx)]\n\u001b[32m     23\u001b[39m     answer[\u001b[33m'1D'\u001b[39m][\u001b[33m'dd'\u001b[39m + str(index) + \u001b[33m'_approx'\u001b[39m] = ddf_x_approx[~np.isnan(ddf_x_approx)]\n\n\u001b[31mTypeError\u001b[39m: 'int' object is not subscriptable\n\n"
+    "correct": 1,
+    "testStatus": [
+        {
+            "name": "root -> 1D -> d1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> dd1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> d1_approx",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> dd1_approx",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> d2",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> dd2",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> d2_approx",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> dd2_approx",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> d3",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> dd3",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> d3_approx",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> dd3_approx",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> d4",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> dd4",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> d4_approx",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> dd4_approx",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> d5",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> dd5",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> d5_approx",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> dd5_approx",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> d6",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> dd6",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> d6_approx",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 1D -> dd6_approx",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_1 -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_1 -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_1_approx -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_1_approx -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_2 -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_2 -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_2_approx -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_2_approx -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_3 -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_3 -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_3_approx -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_3_approx -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_4 -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_4 -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_4_approx -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_4_approx -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_5 -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_5 -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_5_approx -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_5_approx -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_6 -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_6 -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_6_approx -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> 2D -> grad_6_approx -> 1",
+            "ok": true,
+            "status": "OK"
+        }
+    ]
 }
