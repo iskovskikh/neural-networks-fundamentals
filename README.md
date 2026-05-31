@@ -1,5 +1,18 @@
 # 🧠 Fundamentals of Neural Networks Course
 
+
+## Usage
+
+Для локального запуска нужно создать venv и jupyter kernel:
+
+```shell
+uv venv -p 3.11
+. .venv/bin/activate
+uv pip install -r .devcontainer/requirements.txt 
+python3 -m ipykernel install --user --name=container_env --display-name "Python (Container)"
+```
+
+
 ## 📚 About
 
 This repository contains practical exercises for the **Fundamentals of Neural Networks** course created by **Mike Romanov**.
