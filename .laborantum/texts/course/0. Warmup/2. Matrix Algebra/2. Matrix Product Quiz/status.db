@@ -1,5 +1,5 @@
 {
-    "correct": 0,
+    "correct": 1,
     "shuffleOrder": [
         2,
         1,
@@ -13,5 +13,15 @@
         4,
         9,
         8
+    ],
+    "selectedVariantIds": [
+        1,
+        7,
+        4,
+        5,
+        11,
+        10,
+        6,
+        2
     ]
 }
