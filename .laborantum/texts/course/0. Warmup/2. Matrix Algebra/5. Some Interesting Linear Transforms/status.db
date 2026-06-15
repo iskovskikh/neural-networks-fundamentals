@@ -184,17 +184,17 @@
         {
             "name": "root -> task4 -> 3",
             "ok": false,
-            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.3333333333333333"
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.2222222222222222"
         },
         {
             "name": "root -> task4 -> 4",
             "ok": false,
-            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.2857142857142857"
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.24489795918367346"
         },
         {
             "name": "root -> task4 -> 5",
             "ok": false,
-            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.25"
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.21875"
         },
         {
             "name": "root -> task4 -> 6",
@@ -204,7 +204,7 @@
         {
             "name": "root -> task4 -> 7",
             "ok": false,
-            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.2"
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.18"
         },
         {
             "name": "root -> task4 -> 8",
@@ -214,12 +214,12 @@
         {
             "name": "root -> task4 -> 9",
             "ok": false,
-            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.16666666666666666"
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.1388888888888889"
         },
         {
             "name": "root -> task4 -> 10",
             "ok": false,
-            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.15384615384615385"
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.1301775147928994"
         },
         {
             "name": "root -> task5 -> 0",
