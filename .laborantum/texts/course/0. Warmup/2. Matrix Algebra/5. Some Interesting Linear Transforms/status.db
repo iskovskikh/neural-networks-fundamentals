@@ -1,5 +1,5 @@
 {
-    "correct": 0.7555555555555555,
+    "correct": 1,
     "testStatus": [
         {
             "name": "root -> task1 -> 0",
@@ -168,58 +168,58 @@
         },
         {
             "name": "root -> task4 -> 0",
-            "ok": false,
-            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.6666666666666666"
+            "ok": true,
+            "status": "OK"
         },
         {
             "name": "root -> task4 -> 1",
-            "ok": false,
-            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.5"
+            "ok": true,
+            "status": "OK"
         },
         {
             "name": "root -> task4 -> 2",
-            "ok": false,
-            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.4"
+            "ok": true,
+            "status": "OK"
         },
         {
             "name": "root -> task4 -> 3",
-            "ok": false,
-            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.2222222222222222"
+            "ok": true,
+            "status": "OK"
         },
         {
             "name": "root -> task4 -> 4",
-            "ok": false,
-            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.24489795918367346"
+            "ok": true,
+            "status": "OK"
         },
         {
             "name": "root -> task4 -> 5",
-            "ok": false,
-            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.21875"
+            "ok": true,
+            "status": "OK"
         },
         {
             "name": "root -> task4 -> 6",
-            "ok": false,
-            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.2222222222222222"
+            "ok": true,
+            "status": "OK"
         },
         {
             "name": "root -> task4 -> 7",
-            "ok": false,
-            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.18"
+            "ok": true,
+            "status": "OK"
         },
         {
             "name": "root -> task4 -> 8",
-            "ok": false,
-            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.18181818181818182"
+            "ok": true,
+            "status": "OK"
         },
         {
             "name": "root -> task4 -> 9",
-            "ok": false,
-            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.1388888888888889"
+            "ok": true,
+            "status": "OK"
         },
         {
             "name": "root -> task4 -> 10",
-            "ok": false,
-            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.1301775147928994"
+            "ok": true,
+            "status": "OK"
         },
         {
             "name": "root -> task5 -> 0",

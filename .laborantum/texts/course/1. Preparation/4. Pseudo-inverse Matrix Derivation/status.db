@@ -1,13 +1,13 @@
 {
-    "correct": 0,
+    "correct": 1,
     "selectedVariantIds": [
-        1,
         7,
-        6,
-        0,
-        4,
-        3,
         2,
-        5
+        4,
+        6,
+        1,
+        3,
+        5,
+        0
     ]
 }
