@@ -1,4 +1,120 @@
 {
-    "correct": 0,
-    "error": "[NbClientApp] Executing .laborantum/texts/course/1. Preparation/6. Careful Analysis of Linear Regression/task.ipynb\n0.00s - Debugger warning: It seems that frozen modules are being used, which may\n0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n0.00s - to python to disable frozen modules.\n0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n[NbClientApp] Executing notebook with kernel: container_env\nTraceback (most recent call last):\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/bin/jupyter-execute\", line 10, in <module>\n    sys.exit(main())\n             ^^^^^^\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/jupyter_core/application.py\", line 284, in launch_instance\n    super().launch_instance(argv=argv, **kwargs)\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/traitlets/config/application.py\", line 1081, in launch_instance\n    app.initialize(argv)\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/traitlets/config/application.py\", line 118, in inner\n    return method(app, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/nbclient/cli.py\", line 161, in initialize\n    self.run_notebook(path)\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/nbclient/cli.py\", line 215, in run_notebook\n    client.execute()\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/jupyter_core/utils/__init__.py\", line 165, in wrapped\n    return loop.run_until_complete(inner)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/arch/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/asyncio/base_events.py\", line 654, in run_until_complete\n    return future.result()\n           ^^^^^^^^^^^^^^^\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/nbclient/client.py\", line 709, in async_execute\n    await self.async_execute_cell(\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/nbclient/client.py\", line 1062, in async_execute_cell\n    await self._check_raise_for_error(cell, cell_index, exec_reply)\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/nbclient/client.py\", line 918, in _check_raise_for_error\n    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)\nnbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:\n------------------\nX_two_decorrelated, mean_two, whitening_two = decorrelate_features(X_two_raw)\nX_two_one_decorrelated = add_bias_column(X_two_decorrelated)\nw_two_decorrelated = mse_solution(X_two_one_decorrelated, y)\neig_two_decorrelated = gram_eigenvalues(X_two_one_decorrelated)\nlearning_rate_decorrelated = 0.8 / (2 * eig_two_decorrelated.max() / X_two_one_decorrelated.shape[0])\nhistory_decorrelated, loss_history_decorrelated = gradient_descent(\n    X_two_one_decorrelated,\n    y,\n    np.zeros(X_two_one_decorrelated.shape[1], dtype=X_two_one_decorrelated.dtype),\n    learning_rate_decorrelated,\n    40,\n)\nslice_history_decorrelated, slice_loss_history_decorrelated = gradient_descent_on_two_weight_slice(\n    X_two_one_decorrelated,\n    y,\n    np.array([w_two_decorrelated[0], 0, 0], dtype=X_two_one_decorrelated.dtype),\n    learning_rate_decorrelated,\n    40,\n)\n\nnp.testing.assert_allclose(X_two_decorrelated.mean(axis=0), np.zeros(2), atol=5e-3)\nnp.testing.assert_allclose(np.cov(X_two_decorrelated, rowvar=False, bias=True), np.eye(2), atol=6e-2)\nnp.testing.assert_array_less(loss_history_decorrelated[-1], loss_history_raw[-1])\n\nplot_two_weight_geometry(X_two_one_decorrelated, y, w_two_decorrelated, slice_history_decorrelated, 'decorrelated features')\nplot_weight_history(history_decorrelated, 'decorrelated two-feature weight history')\nplt.figure(figsize=(6, 3))\nplt.plot(loss_history_raw[:41], label='raw')\nplt.plot(loss_history_decorrelated, label='decorrelated')\nplt.yscale('log')\nplt.xlabel('gradient descent step')\nplt.ylabel('MSE')\nplt.title('decorrelation speeds up convergence')\nplt.legend()\nplt.show()\n\nfor index, case in enumerate(inputs):\n    X_two = case['X'][:, two_feature_indices]\n    X_decorrelated, mean, whitening = decorrelate_features(X_two)\n    X_case_one = add_bias_column(X_decorrelated)\n    y_case = case['y']\n    eig = gram_eigenvalues(X_case_one)\n    lr = 0.8 / (2 * eig.max() / X_case_one.shape[0])\n    hist, losses = gradient_descent(X_case_one, y_case, np.zeros(X_case_one.shape[1], dtype=X_case_one.dtype), lr, 40)\n    answer[f'case_{index}']['decorrelated_two_feature_mse_solution_weights'] = mse_solution(X_case_one, y_case)\n    answer[f'case_{index}']['decorrelated_two_feature_gd_final_weights'] = hist[-1]\n    answer[f'case_{index}']['decorrelated_two_feature_loss_history'] = losses\n    answer[f'case_{index}']['decorrelated_two_feature_eigenvalues'] = eig\n    answer[f'case_{index}']['decorrelated_covariance'] = np.cov(X_decorrelated, rowvar=False, bias=True)\n\nprint('decorrelated eigenvalues:', eig_two_decorrelated)\nprint('decorrelated final GD loss:', loss_history_decorrelated[-1])\n\n------------------\n\n\n\u001b[31m---------------------------------------------------------------------------\u001b[39m\n\u001b[31mAssertionError\u001b[39m                            Traceback (most recent call last)\n\u001b[36mCell\u001b[39m\u001b[36m \u001b[39m\u001b[32mIn[11]\u001b[39m\u001b[32m, line 23\u001b[39m\n\u001b[32m     19\u001b[39m )\n\u001b[32m     20\u001b[39m \n\u001b[32m     21\u001b[39m np.testing.assert_allclose(X_two_decorrelated.mean(axis=\u001b[32m0\u001b[39m), np.zeros(\u001b[32m2\u001b[39m), atol=\u001b[32m5e-3\u001b[39m)\n\u001b[32m     22\u001b[39m np.testing.assert_allclose(np.cov(X_two_decorrelated, rowvar=\u001b[38;5;28;01mFalse\u001b[39;00m, bias=\u001b[38;5;28;01mTrue\u001b[39;00m), np.eye(\u001b[32m2\u001b[39m), atol=\u001b[32m6e-2\u001b[39m)\n\u001b[32m---> \u001b[39m\u001b[32m23\u001b[39m np.testing.assert_array_less(loss_history_decorrelated[-\u001b[32m1\u001b[39m], loss_history_raw[-\u001b[32m1\u001b[39m])\n\u001b[32m     24\u001b[39m \n\u001b[32m     25\u001b[39m plot_two_weight_geometry(X_two_one_decorrelated, y, w_two_decorrelated, slice_history_decorrelated, \u001b[33m'decorrelated features'\u001b[39m)\n\u001b[32m     26\u001b[39m plot_weight_history(history_decorrelated, \u001b[33m'decorrelated two-feature weight history'\u001b[39m)\n\n    \u001b[31m[... skipping hidden 1 frame]\u001b[39m\n\n\u001b[36mFile \u001b[39m\u001b[32m~/.local/share/uv/python/cpython-3.11.15-linux-x86_64-gnu/lib/python3.11/contextlib.py:81\u001b[39m, in \u001b[36mContextDecorator.__call__.<locals>.inner\u001b[39m\u001b[34m(*args, **kwds)\u001b[39m\n\u001b[32m     78\u001b[39m \u001b[38;5;129m@wraps\u001b[39m(func)\n\u001b[32m     79\u001b[39m \u001b[38;5;28;01mdef\u001b[39;00m\u001b[38;5;250m \u001b[39m\u001b[34minner\u001b[39m(*args, **kwds):\n\u001b[32m     80\u001b[39m     \u001b[38;5;28;01mwith\u001b[39;00m \u001b[38;5;28mself\u001b[39m._recreate_cm():\n\u001b[32m---> \u001b[39m\u001b[32m81\u001b[39m         \u001b[38;5;28;01mreturn\u001b[39;00m \u001b[30;43mfunc\u001b[39;49m\u001b[30;43m(\u001b[39;49m\u001b[30;43m*\u001b[39;49m\u001b[30;43margs\u001b[39;49m\u001b[30;43m,\u001b[39;49m\u001b[30;43m \u001b[39;49m\u001b[30;43m*\u001b[39;49m\u001b[30;43m*\u001b[39;49m\u001b[30;43mkwds\u001b[39;49m\u001b[30;43m)\u001b[39;49m\n\n\u001b[36mFile \u001b[39m\u001b[32m~/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/numpy/testing/_private/utils.py:797\u001b[39m, in \u001b[36massert_array_compare\u001b[39m\u001b[34m(comparison, x, y, err_msg, verbose, header, precision, equal_nan, equal_inf, strict)\u001b[39m\n\u001b[32m    793\u001b[39m         err_msg += \u001b[33m'\u001b[39m\u001b[38;5;130;01m\\n\u001b[39;00m\u001b[33m'\u001b[39m + \u001b[33m'\u001b[39m\u001b[38;5;130;01m\\n\u001b[39;00m\u001b[33m'\u001b[39m.join(remarks)\n\u001b[32m    794\u001b[39m         msg = build_err_msg([ox, oy], err_msg,\n\u001b[32m    795\u001b[39m                             verbose=verbose, header=header,\n\u001b[32m    796\u001b[39m                             names=(\u001b[33m'\u001b[39m\u001b[33mx\u001b[39m\u001b[33m'\u001b[39m, \u001b[33m'\u001b[39m\u001b[33my\u001b[39m\u001b[33m'\u001b[39m), precision=precision)\n\u001b[32m--> \u001b[39m\u001b[32m797\u001b[39m         \u001b[38;5;28;01mraise\u001b[39;00m \u001b[38;5;167;01mAssertionError\u001b[39;00m(msg)\n\u001b[32m    798\u001b[39m \u001b[38;5;28;01mexcept\u001b[39;00m \u001b[38;5;167;01mValueError\u001b[39;00m:\n\u001b[32m    799\u001b[39m     \u001b[38;5;28;01mimport\u001b[39;00m\u001b[38;5;250m \u001b[39m\u001b[34;01mtraceback\u001b[39;00m\n\n\u001b[31mAssertionError\u001b[39m: \nArrays are not less-ordered\n\nMismatched elements: 1 / 1 (100%)\nMax absolute difference: 206.09267831\nMax relative difference: 0.55899196\n x: array(574.778978)\n y: array(368.6863)\n\n"
+    "correct": 0.6521739130434783,
+    "testStatus": [
+        {
+            "name": "root -> case_0 -> raw_one_shape",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> case_0 -> raw_feature_means",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> case_0 -> raw_feature_stds",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> case_0 -> zero_loss",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> case_0 -> raw_mse_solution_weights",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> case_0 -> raw_mse_solution_loss",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> case_0 -> raw_two_feature_mse_solution_weights",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> case_0 -> raw_two_feature_gd_final_weights",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> case_0 -> raw_two_feature_loss_history",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> case_0 -> decorrelated_two_feature_mse_solution_weights",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> case_0 -> decorrelated_two_feature_gd_final_weights",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> case_0 -> decorrelated_two_feature_loss_history",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> case_0 -> decorrelated_two_feature_eigenvalues",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> case_0 -> decorrelated_covariance",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> case_0 -> normalized_two_feature_mse_solution_weights",
+            "ok": false,
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.008265972"
+        },
+        {
+            "name": "root -> case_0 -> normalized_two_feature_gd_final_weights",
+            "ok": false,
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.008263826"
+        },
+        {
+            "name": "root -> case_0 -> normalized_two_feature_loss_history",
+            "ok": false,
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.047945093"
+        },
+        {
+            "name": "root -> case_0 -> normalized_two_feature_eigenvalues",
+            "ok": false,
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 2.9157002"
+        },
+        {
+            "name": "root -> case_0 -> all_normalized_mse_solution_weights",
+            "ok": false,
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.0059260847"
+        },
+        {
+            "name": "root -> case_0 -> all_normalized_mse_solution_loss",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> case_0 -> all_normalized_gd_final_weights",
+            "ok": false,
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.005920148"
+        },
+        {
+            "name": "root -> case_0 -> all_normalized_loss_history",
+            "ok": false,
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.020550549"
+        },
+        {
+            "name": "root -> case_0 -> all_normalized_eigenvalues",
+            "ok": false,
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 2.1332183"
+        }
+    ]
 }
