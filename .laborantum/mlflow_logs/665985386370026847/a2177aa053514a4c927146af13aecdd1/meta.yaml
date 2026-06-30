@@ -1,0 +1,14 @@
+artifact_uri: file:///home/arch/scripts/neural-networks-fundamentals/.laborantum/mlflow_logs/665985386370026847/a2177aa053514a4c927146af13aecdd1/artifacts
+end_time: 1782828841669
+entry_point_name: ''
+experiment_id: '665985386370026847'
+lifecycle_stage: active
+run_id: a2177aa053514a4c927146af13aecdd1
+run_name: 'two layer fcnn: stems'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1782828546765
+status: 3
+tags: []
+user_id: arch
