@@ -197,7 +197,7 @@ def _finalize_metric_totals(metric_totals):
     }
 
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
 
 
 def train_model(
@@ -211,6 +211,7 @@ def train_model(
     scheduler=None,
     mlflow_logger=None,
     run_name='model',
+    device = 'cpu',
 ):
 
     model.to(device)
