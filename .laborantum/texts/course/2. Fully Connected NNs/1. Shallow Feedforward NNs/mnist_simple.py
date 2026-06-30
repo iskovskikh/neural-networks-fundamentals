@@ -6,6 +6,8 @@ class MNISTSimpleDataset:
         ## Load MNIST dataset here
         ## YOUR CODE HERE
 
+        self.a = 42
+
 
     def __len__(self):
         res = 0
