@@ -1,0 +1,14 @@
+artifact_uri: file:///home/arch/scripts/neural-networks-fundamentals/.laborantum/mlflow_logs/665985386370026847/ef31118cce99492ea33ef5036deaf49a/artifacts
+end_time: 1782819830492
+entry_point_name: ''
+experiment_id: '665985386370026847'
+lifecycle_stage: active
+run_id: ef31118cce99492ea33ef5036deaf49a
+run_name: simple_network_training
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1782819822621
+status: 3
+tags: []
+user_id: arch

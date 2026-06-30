@@ -1,0 +1,14 @@
+artifact_uri: file:///home/arch/scripts/neural-networks-fundamentals/.laborantum/mlflow_logs/665985386370026847/e2b16fb083c34efe88e2c350b9beafcf/artifacts
+end_time: 1782813088981
+entry_point_name: ''
+experiment_id: '665985386370026847'
+lifecycle_stage: active
+run_id: e2b16fb083c34efe88e2c350b9beafcf
+run_name: 'one_layer_fcnn: classifier weights'
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1782812966194
+status: 3
+tags: []
+user_id: arch

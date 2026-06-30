@@ -197,6 +197,9 @@ def _finalize_metric_totals(metric_totals):
     }
 
 
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+
 def train_model(
     model,
     n_epochs,
@@ -209,6 +212,10 @@ def train_model(
     mlflow_logger=None,
     run_name='model',
 ):
+
+    model.to(device)
+    print(f"Model moved to device: {device}")
+
     losses = _normalize_named_functions(loss, 'loss')
     if not isinstance(losses, dict):
         raise TypeError('loss must be a function or a dictionary mapping loss names to loss functions')
@@ -260,6 +267,9 @@ def train_model(
                 for batch_index, batch in enumerate(train_dl):
                     batch = {'data': batch}
 
+                    batch["data"]["image"] = batch["data"]["image"].to(device)
+                    batch["data"]["label"] = batch["data"]["label"].to(device)
+
                     ## YOUR CODE HERE
                     # Implement one training step:
                     
@@ -310,6 +320,9 @@ def train_model(
                 with torch.no_grad():
                     for valid_batch in valid_dl:
                         valid_batch = {'data': valid_batch}
+
+                        valid_batch["data"]["image"] = valid_batch["data"]["image"].to(device)
+                        valid_batch["data"]["label"] = valid_batch["data"]["label"].to(device)
 
                         ## YOUR CODE HERE
                         # Implement one validation step:
