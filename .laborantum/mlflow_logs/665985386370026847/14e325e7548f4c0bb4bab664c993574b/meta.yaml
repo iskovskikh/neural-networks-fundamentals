@@ -1,0 +1,14 @@
+artifact_uri: file:///home/arch/scripts/neural-networks-fundamentals/.laborantum/mlflow_logs/665985386370026847/14e325e7548f4c0bb4bab664c993574b/artifacts
+end_time: 1782838935880
+entry_point_name: ''
+experiment_id: '665985386370026847'
+lifecycle_stage: active
+run_id: 14e325e7548f4c0bb4bab664c993574b
+run_name: Tanh
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1782838782560
+status: 3
+tags: []
+user_id: arch

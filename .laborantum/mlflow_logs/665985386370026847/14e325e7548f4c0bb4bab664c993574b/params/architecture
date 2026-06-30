@@ -1,0 +1,1 @@
+network.0: Linear(784, 784) | network.1: Tanh | network.2: Linear(784, 784) | network.3: Tanh | network.4: Linear(784, 10)
