@@ -39,9 +39,14 @@
     "NVIDIA_VISIBLE_DEVICES": "none",
     "SSH_AUTH_SOCK": "/run/host-services/ssh-auth.sock"
   },
-  "mounts": [
-    "source=/run/host-services/ssh-auth.sock,target=/run/host-services/ssh-auth.sock,type=bind",
-    /*
-    */
-  ]
+  // у менч нет /run/host-services/ssh-auth.sock
+  // пробовал создать
+  // eval "$(ssh-agent -s)"
+  // ssh-add
+  //
+  // "mounts": [
+  //   "source=/run/host-services/ssh-auth.sock,target=/run/host-services/ssh-auth.sock,type=bind",
+  //   /*
+  //   */
+  // ]
 }

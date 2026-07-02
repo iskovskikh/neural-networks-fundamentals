@@ -1,4 +1,345 @@
 {
-    "correct": 0,
-    "error": "<frozen task>:218: UserWarning: FigureCanvasAgg is non-interactive, and thus cannot be shown\n/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/mlflow/tracking/_tracking_service/utils.py:184: FutureWarning: The filesystem tracking backend (e.g., './mlruns') is deprecated as of February 2026. Consider transitioning to a database backend (e.g., 'sqlite:///mlflow.db') to take advantage of the latest MLflow features. See https://mlflow.org/docs/latest/self-hosting/migrate-from-file-store for migration guidance.\n  return FileStore(store_uri, store_uri)\n\repochs:   0%|          | 0/3 [00:00<?, ?it/s]\n\rbatches:   0%|          | 0/1875 [00:00<?, ?it/s]\u001b[A\n\rbatches:   0%|          | 0/1875 [00:00<?, ?it/s]\u001b[A\n\repoch 1/3:   0%|          | 0/1875 [00:00<?, ?it/s]\u001b[A\n\repoch 1/3:   0%|          | 0/1875 [00:00<?, ?it/s, batch losses: | -]\u001b[A\repoch 1/3:   0%|          | 0/1875 [00:00<?, ?it/s, batch losses: | -]\n\repochs:   0%|          | 0/3 [00:00<?, ?it/s]\nTraceback (most recent call last):\n  File \"<frozen __main__>\", line 4, in <module>\n  File \"<frozen task>\", line 528, in <module>\n  File \"<frozen src.train_loop>\", line 277, in train_model\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1751, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1762, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen src.models.feedforward.simple_fcnn>\", line 38, in forward\n  File \"<frozen src.models.feedforward.simple_fcnn>\", line 32, in __forward_kernel\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1751, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1762, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/arch/scripts/neural-networks-fundamentals/.venv/lib/python3.11/site-packages/torch/nn/modules/linear.py\", line 125, in forward\n    return F.linear(input, self.weight, self.bias)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Expected all tensors to be on the same device, but found at least two devices, cuda:0 and cpu! (when checking argument for argument mat1 in method wrapper_CUDA_addmm)\n"
+    "correct": 0.7205882352941176,
+    "testStatus": [
+        {
+            "name": "root -> seed_check -> python.random -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> python.random -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> python.random -> 2",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> python.random -> 3",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> python.randint -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> python.randint -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> python.randint -> 2",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> python.randint -> 3",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> numpy.random.rand",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> numpy.random.randn",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> numpy.random.randint",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> torch.rand",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> torch.randn",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> torch.randint",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> torch.backends.cudnn.deterministic",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> torch.cuda.is_available",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> X_train.dtype",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> y_train.dtype",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> X_valid.dtype",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> y_valid.dtype",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> X_train.shape -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> X_train.shape -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> X_valid.shape -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> X_valid.shape -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> X_train.mean",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> y_train.mean",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> X_valid.mean",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> y_valid.mean",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> check_batch -> data -> image",
+            "ok": false,
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 1.1313108"
+        },
+        {
+            "name": "root -> check_batch -> data -> label",
+            "ok": false,
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 2.9"
+        },
+        {
+            "name": "root -> check_batch -> signals -> output",
+            "ok": false,
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 2.9605494"
+        },
+        {
+            "name": "root -> check_batch -> postprocessed -> class",
+            "ok": false,
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 3.6"
+        },
+        {
+            "name": "root -> loss_names -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> metric_names -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> optimizer_class",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> optimizer_defaults -> lr",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> optimizer_defaults -> betas -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> optimizer_defaults -> betas -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> optimizer_defaults -> eps",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> optimizer_defaults -> weight_decay",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> optimizer_defaults -> amsgrad",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> optimizer_defaults -> maximize",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> optimizer_defaults -> foreach",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> optimizer_defaults -> capturable",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> optimizer_defaults -> differentiable",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> optimizer_defaults -> fused",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> optimizer_defaults -> decoupled_weight_decay",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> optimizer_param_groups_count",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> optimizer_lrs -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> scheduler_class",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> scheduler_optimizer_class",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> test_loss_val -> ce",
+            "ok": false,
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.4146122932434082,'\n                    that is larger than eps (0.0001)"
+        },
+        {
+            "name": "root -> test_metrics_val -> accuracy -> 0",
+            "ok": false,
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 1.0,'\n                    that is larger than eps (0.0001)"
+        },
+        {
+            "name": "root -> test_metrics_val -> accuracy -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> train_batch",
+            "ok": false,
+            "status": "FAILED: Edit distance between strings is 10"
+        },
+        {
+            "name": "root -> valid_batch",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> train_loss_history -> 0",
+            "ok": false,
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.9457093463668454,'\n                    that is larger than eps (0.0001)"
+        },
+        {
+            "name": "root -> train_loss_history -> 1",
+            "ok": false,
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.026893627692118893,'\n                    that is larger than eps (0.0001)"
+        },
+        {
+            "name": "root -> train_loss_history -> 2",
+            "ok": false,
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.08510357787861739,'\n                    that is larger than eps (0.0001)"
+        },
+        {
+            "name": "root -> valid_loss_history -> 0",
+            "ok": false,
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.023068780682767687,'\n                    that is larger than eps (0.0001)"
+        },
+        {
+            "name": "root -> valid_loss_history -> 1",
+            "ok": false,
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.052348518709708414,'\n                    that is larger than eps (0.0001)"
+        },
+        {
+            "name": "root -> valid_loss_history -> 2",
+            "ok": false,
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.08087362537419865,'\n                    that is larger than eps (0.0001)"
+        },
+        {
+            "name": "root -> train_acc_history -> 0",
+            "ok": false,
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.20761663996389546,'\n                    that is larger than eps (0.0001)"
+        },
+        {
+            "name": "root -> train_acc_history -> 1",
+            "ok": false,
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.006733347606507012,'\n                    that is larger than eps (0.0001)"
+        },
+        {
+            "name": "root -> train_acc_history -> 2",
+            "ok": false,
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.023700025081478948,'\n                    that is larger than eps (0.0001)"
+        },
+        {
+            "name": "root -> valid_acc_history -> 0",
+            "ok": false,
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.00629998693375422,'\n                    that is larger than eps (0.0001)"
+        },
+        {
+            "name": "root -> valid_acc_history -> 1",
+            "ok": false,
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.016199972437882404,'\n                    that is larger than eps (0.0001)"
+        },
+        {
+            "name": "root -> valid_acc_history -> 2",
+            "ok": false,
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.021399995135324645,'\n                    that is larger than eps (0.0001)"
+        }
+    ]
 }
