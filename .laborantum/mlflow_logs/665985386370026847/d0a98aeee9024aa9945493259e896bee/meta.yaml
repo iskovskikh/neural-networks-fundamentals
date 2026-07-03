@@ -1,0 +1,14 @@
+artifact_uri: file:///home/arch/scripts/neural-networks-fundamentals/.laborantum/mlflow_logs/665985386370026847/d0a98aeee9024aa9945493259e896bee/artifacts
+end_time: 1783098687536
+entry_point_name: ''
+experiment_id: '665985386370026847'
+lifecycle_stage: active
+run_id: d0a98aeee9024aa9945493259e896bee
+run_name: gradient_reversal_gan
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783098672058
+status: 3
+tags: []
+user_id: root
