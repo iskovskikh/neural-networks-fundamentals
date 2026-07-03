@@ -168,7 +168,7 @@ class GAN(torch.nn.Module):
                 discriminator_score = discriminator_logits,
                 fake_score = fake_logits,
                 real_score = real_logits,
-                discriminator_probability = torch.sigmoid(fake_logits),
+                discriminator_probability = torch.sigmoid(discriminator_logits),
                 fake_probability = torch.sigmoid(fake_logits),
                 real_probability = torch.sigmoid(real_logits),
             )
@@ -191,7 +191,7 @@ class GAN(torch.nn.Module):
                 discriminator_score = discriminator_logits,
                 fake_score = fake_logits,
                 # real_score = real_logits,
-                discriminator_probability = torch.sigmoid(fake_logits),
+                discriminator_probability = torch.sigmoid(discriminator_logits),
                 fake_probability = torch.sigmoid(fake_logits),
                 # real_probability = torch.sigmoid(real_logits),
             )
