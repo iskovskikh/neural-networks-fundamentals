@@ -10,10 +10,24 @@ class BatchNorm(torch.nn.Module):
         
         ## YOUR CODE HERE
 
+        self.register_buffer('running_var', None)
+
 
     def _init_stats(self, signal):
         channels = signal.shape[1]
         shape = [1, channels]
+
+        self.running_mean = torch.zeros(
+            shape,
+            device=signal.device,
+            dtype=signal.dtype,
+        )
+
+        self.running_var = torch.ones(
+            shape,
+            device=signal.device,
+            dtype=signal.dtype,
+        )
 
     def _check_stats(self, signal):
         return (
@@ -30,10 +44,22 @@ class BatchNorm(torch.nn.Module):
 
         if self.training:
             ## YOUR CODE HERE
+            
+            mean = signal.mean(dim=0, keepdim=True)
+            var = signal.var(dim=0, unbiased=False, keepdim=True)
+
+            self.running_mean * (self.beta) + ((1 - self.beta) * mean)
+            self.running_var * (self.beta) + ((1 - self.beta) * var)
+
+            signal = (signal - mean) / torch.sqrt(var + self.eps)
+
 
             
         else:
             ## YOUR CODE HERE
+            signal = (
+                signal - self.running_mean
+            ) / torch.sqrt(self.running_var + self.eps)
 
 
         return signal
@@ -44,10 +70,13 @@ class Residual(torch.nn.Module):
         super().__init__()
         ## YOUR CODE HERE
 
+        self.module = module
+
+
     def forward(self, signal):
         ## YOUR CODE HERE
 
-        return signal
+        return signal + self.module(signal)
 
 
 class Bottleneck(torch.nn.Module):
@@ -64,6 +93,16 @@ class Bottleneck(torch.nn.Module):
         self.block = torch.nn.Identity()
 
         ## YOUR CODE HERE
+
+        hidden = in_channels // compression
+
+        self.block = torch.nn.Sequential(
+        prenormalization(),
+        torch.nn.Linear(in_channels, hidden),
+        activation(),
+        torch.nn.Linear(hidden, in_channels),
+        postnormalization(),
+)
 
     def forward(self, signal):
         ## YOUR CODE HERE
@@ -83,12 +122,46 @@ class DeepFullyConnectedNet(torch.nn.Module):
         ...
         ## YOUR CODE HERE
         # Define network modules in the constructor
+        super().__init__()
+
+        # The design of this network is the following:
+        # - it takes the input vector of dimensionality `dim_input`
+        # - projects it to embedding space using an encoder
+        #  (a simple linear transform `torch.nn.Linear`) of dimentinoality `dim_embed`
+
+        self.encoder = torch.nn.Linear(dim_input, dim_embed)
+        
+        # - applies a sequence of `blocks` to the embedding
+
+        hidden  = []
+        for _ in range(n_blocks):
+            hidden.append(block(dim_embed))
+
+        self.blocks = torch.nn.Sequential(*hidden)
+
+        # - after the last block is complete, applies a decoder
+        #  (a simple linear transform `torch.nn.Linear`) to the dimentionality `dim_output`
+        #  (that in the end is treated as the logits)
+
+        self.decoder = torch.nn.Linear(dim_embed, dim_output)
+
+
+
 
 
     def __forward_kernel(self, signal):
         signal = signal.reshape([signal.shape[0], -1])
         ## YOUR CODE HERE
         # Pass the signal through the modules in forward
+
+        # - `__forward_kernel`, which receives an image tensor,
+        #  flattens it from `[batch, 28, 28]` to `[batch, 784]`
+        # , passes it through the blocks, and returns raw logits. 
+        # This method is also used for the model visualization
+
+        signal = self.encoder(signal)
+        signal = self.blocks(signal)
+        signal = self.decoder(signal)
 
 
         return signal
@@ -111,6 +184,10 @@ class DeepFullyConnectedNet(torch.nn.Module):
         signal = batch['signals']['output']
 
         ## YOUR CODE HERE
+
+        signal = torch.argmax(signal, dim=1)
+
+
 
         # Put the processed result into the batch
         batch['postprocessed'] = {'class': signal}

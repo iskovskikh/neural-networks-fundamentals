@@ -1,0 +1,1 @@
+encoder: Linear(784, 64) | blocks.0.block.0: Identity | blocks.0.block.1: Linear(64, 64) | blocks.0.block.2: ReLU | blocks.0.block.3: Linear(64, 64) | blocks.0.block.4: Identity | decoder: Linear(64, 10)

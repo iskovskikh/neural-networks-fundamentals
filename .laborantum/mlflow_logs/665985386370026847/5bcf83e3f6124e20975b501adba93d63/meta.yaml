@@ -1,0 +1,14 @@
+artifact_uri: file:///home/arch/scripts/neural-networks-fundamentals/.laborantum/mlflow_logs/665985386370026847/5bcf83e3f6124e20975b501adba93d63/artifacts
+end_time: 1783195374901
+entry_point_name: ''
+experiment_id: '665985386370026847'
+lifecycle_stage: active
+run_id: 5bcf83e3f6124e20975b501adba93d63
+run_name: shallow_feedforward
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783195264882
+status: 3
+tags: []
+user_id: root
