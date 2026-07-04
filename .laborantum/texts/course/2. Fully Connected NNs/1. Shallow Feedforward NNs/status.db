@@ -154,7 +154,7 @@
         {
             "name": "root -> check_batch -> signals -> output",
             "ok": false,
-            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 2.9605494"
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 2.9605496"
         },
         {
             "name": "root -> check_batch -> postprocessed -> class",
@@ -259,7 +259,7 @@
         {
             "name": "root -> test_loss_val -> ce",
             "ok": false,
-            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.4146122932434082,'\n                    that is larger than eps (0.0001)"
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.4146130084991455,'\n                    that is larger than eps (0.0001)"
         },
         {
             "name": "root -> test_metrics_val -> accuracy -> 0",
@@ -284,62 +284,62 @@
         {
             "name": "root -> train_loss_history -> 0",
             "ok": false,
-            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.9457093463668454,'\n                    that is larger than eps (0.0001)"
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.9494081752587389,'\n                    that is larger than eps (0.0001)"
         },
         {
             "name": "root -> train_loss_history -> 1",
             "ok": false,
-            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.026893627692118893,'\n                    that is larger than eps (0.0001)"
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.02597366558299513,'\n                    that is larger than eps (0.0001)"
         },
         {
             "name": "root -> train_loss_history -> 2",
             "ok": false,
-            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.08510357787861739,'\n                    that is larger than eps (0.0001)"
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.0781258290038313,'\n                    that is larger than eps (0.0001)"
         },
         {
             "name": "root -> valid_loss_history -> 0",
             "ok": false,
-            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.023068780682767687,'\n                    that is larger than eps (0.0001)"
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.024077259256261918,'\n                    that is larger than eps (0.0001)"
         },
         {
             "name": "root -> valid_loss_history -> 1",
             "ok": false,
-            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.052348518709708414,'\n                    that is larger than eps (0.0001)"
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.05171561761097093,'\n                    that is larger than eps (0.0001)"
         },
         {
             "name": "root -> valid_loss_history -> 2",
             "ok": false,
-            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.08087362537419865,'\n                    that is larger than eps (0.0001)"
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.07563624623028622,'\n                    that is larger than eps (0.0001)"
         },
         {
             "name": "root -> train_acc_history -> 0",
             "ok": false,
-            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.20761663996389546,'\n                    that is larger than eps (0.0001)"
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.20883330663056188,'\n                    that is larger than eps (0.0001)"
         },
         {
             "name": "root -> train_acc_history -> 1",
             "ok": false,
-            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.006733347606507012,'\n                    that is larger than eps (0.0001)"
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.006683347606507017,'\n                    that is larger than eps (0.0001)"
         },
         {
             "name": "root -> train_acc_history -> 2",
             "ok": false,
-            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.023700025081478948,'\n                    that is larger than eps (0.0001)"
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.021266691748145994,'\n                    that is larger than eps (0.0001)"
         },
         {
             "name": "root -> valid_acc_history -> 0",
             "ok": false,
-            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.00629998693375422,'\n                    that is larger than eps (0.0001)"
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.006899986933753599,'\n                    that is larger than eps (0.0001)"
         },
         {
             "name": "root -> valid_acc_history -> 1",
             "ok": false,
-            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.016199972437882404,'\n                    that is larger than eps (0.0001)"
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.016799972437881783,'\n                    that is larger than eps (0.0001)"
         },
         {
             "name": "root -> valid_acc_history -> 2",
             "ok": false,
-            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.021399995135324645,'\n                    that is larger than eps (0.0001)"
+            "status": "\n                    FAILED: Incorrect answer. Misfit is 0.019899995135326143,'\n                    that is larger than eps (0.0001)"
         }
     ]
 }
