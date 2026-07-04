@@ -214,7 +214,7 @@ def train_model(
     device = 'cpu',
 ):
 
-    model.to(device)
+    # model.to(device)
     print(f"Model moved to device: {device}")
 
     losses = _normalize_named_functions(loss, 'loss')
@@ -268,8 +268,8 @@ def train_model(
                 for batch_index, batch in enumerate(train_dl):
                     batch = {'data': batch}
 
-                    batch["data"]["image"] = batch["data"]["image"].to(device)
-                    batch["data"]["label"] = batch["data"]["label"].to(device)
+                    # batch["data"]["image"] = batch["data"]["image"].to(device)
+                    # batch["data"]["label"] = batch["data"]["label"].to(device)
 
                     ## YOUR CODE HERE
                     # Implement one training step:
@@ -322,8 +322,8 @@ def train_model(
                     for valid_batch in valid_dl:
                         valid_batch = {'data': valid_batch}
 
-                        valid_batch["data"]["image"] = valid_batch["data"]["image"].to(device)
-                        valid_batch["data"]["label"] = valid_batch["data"]["label"].to(device)
+                        # valid_batch["data"]["image"] = valid_batch["data"]["image"].to(device)
+                        # valid_batch["data"]["label"] = valid_batch["data"]["label"].to(device)
 
                         ## YOUR CODE HERE
                         # Implement one validation step:

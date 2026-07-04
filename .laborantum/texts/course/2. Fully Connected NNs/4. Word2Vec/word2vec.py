@@ -42,6 +42,7 @@ class BinaryIndexTree:
         context_word = context_word.detach().cpu().view(-1).tolist()
         fallback_batch_size = len(context_word)
         # Fallback code for this task: keeps the notebook runnable before the method is solved.
+
         fallback = {
             'path': torch.zeros(
                 fallback_batch_size,
@@ -64,6 +65,40 @@ class BinaryIndexTree:
         }
 
         ## YOUR CODE HERE
+        
+        paths = []
+        targets = []
+        
+        for word_index in context_word:
+            path, target = self.path_and_targets(word_index)
+            paths.append(path)
+            targets.append(target)
+
+        path = torch.tensor(
+            paths,
+            dtype=torch.long,
+            device=device,
+        )
+
+        target = torch.tensor(
+            targets,
+            dtype=torch.float32,
+            device=device,
+        )
+
+        mask = torch.ones(
+            len(context_word),
+            self.max_path_length,
+            dtype=torch.float32,
+            device=device,
+        )
+
+        fallback = dict(
+            path = path,
+            targets = target,
+            mask = mask,
+        )
+
         return fallback
 
 
