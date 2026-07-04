@@ -29,6 +29,7 @@ class BatchNorm(torch.nn.Module):
             dtype=signal.dtype,
         )
 
+
     def _check_stats(self, signal):
         return (
             self.running_mean is not None
@@ -46,22 +47,18 @@ class BatchNorm(torch.nn.Module):
             ## YOUR CODE HERE
             
             mean = signal.mean(dim=0, keepdim=True)
-            var = signal.var(dim=0, unbiased=False, keepdim=True)
+            var = ((signal - mean) ** 2).mean(dim=0, keepdim=True)
 
-            self.running_mean * (self.beta) + ((1 - self.beta) * mean)
-            self.running_var * (self.beta) + ((1 - self.beta) * var)
+            self.running_mean.mul_(self.beta).add_((1 - self.beta) * mean)
+            self.running_var.mul_(self.beta).add_((1 - self.beta) * var)
 
             signal = (signal - mean) / torch.sqrt(var + self.eps)
-
-
             
         else:
             ## YOUR CODE HERE
-            signal = (
-                signal - self.running_mean
-            ) / torch.sqrt(self.running_var + self.eps)
+            signal = (signal - self.running_mean) / torch.sqrt(self.running_var + self.eps)
 
-
+        signal = signal
         return signal
 
 
@@ -106,9 +103,9 @@ class Bottleneck(torch.nn.Module):
 
     def forward(self, signal):
         ## YOUR CODE HERE
-
-        return signal
-
+    
+        return self.block(signal)
+    
 
 
 class DeepFullyConnectedNet(torch.nn.Module):

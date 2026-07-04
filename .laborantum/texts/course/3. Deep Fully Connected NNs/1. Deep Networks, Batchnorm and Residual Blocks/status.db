@@ -1,4 +1,260 @@
 {
-    "correct": 0,
-    "error": "[NbClientApp] Executing .laborantum/texts/course/3. Deep Fully Connected NNs/1. Deep Networks, Batchnorm and Residual Blocks/task.ipynb\n0.00s - Debugger warning: It seems that frozen modules are being used, which may\n0.00s - make the debugger miss breakpoints. Please pass -Xfrozen_modules=off\n0.00s - to python to disable frozen modules.\n0.00s - Note: Debugging will proceed. Set PYDEVD_DISABLE_FILE_VALIDATION=1 to disable this validation.\n[NbClientApp] Executing notebook with kernel: container_env\nTraceback (most recent call last):\n  File \"/usr/local/bin/jupyter-execute\", line 6, in <module>\n    sys.exit(main())\n             ^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/jupyter_core/application.py\", line 284, in launch_instance\n    super().launch_instance(argv=argv, **kwargs)\n  File \"/usr/local/lib/python3.11/site-packages/traitlets/config/application.py\", line 1081, in launch_instance\n    app.initialize(argv)\n  File \"/usr/local/lib/python3.11/site-packages/traitlets/config/application.py\", line 118, in inner\n    return method(app, *args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/nbclient/cli.py\", line 161, in initialize\n    self.run_notebook(path)\n  File \"/usr/local/lib/python3.11/site-packages/nbclient/cli.py\", line 215, in run_notebook\n    client.execute()\n  File \"/usr/local/lib/python3.11/site-packages/jupyter_core/utils/__init__.py\", line 165, in wrapped\n    return loop.run_until_complete(inner)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/asyncio/base_events.py\", line 654, in run_until_complete\n    return future.result()\n           ^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.11/site-packages/nbclient/client.py\", line 709, in async_execute\n    await self.async_execute_cell(\n  File \"/usr/local/lib/python3.11/site-packages/nbclient/client.py\", line 1062, in async_execute_cell\n    await self._check_raise_for_error(cell, cell_index, exec_reply)\n  File \"/usr/local/lib/python3.11/site-packages/nbclient/client.py\", line 918, in _check_raise_for_error\n    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)\nnbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:\n------------------\n# simple_network = src.models.feedforward.deep_batchnorm_net.DeepFullyConnectedNet(\n# simple_network = src.models.feedforward.deep_batchnorm_net.DeepFullyConnectedNet(\nsimple_network = src.models.feedforward.deep_batchnorm_net.DeepFullyConnectedNet(\n    dim_input=28 * 28, \n    dim_embed=64,\n    dim_output=10,\n    n_blocks=3)\n\n# ^^^ This class should be implemented in this task\n\n# Here we intialize the network so that the initial state is predictable\nutils.deterministic_init(simple_network)\n\n# Here we are creating a sample batch with the same keys as MNISTSimpleDataset\ncheck_batch = {'data': {'image': torch.randn(10, 28, 28), 'label': torch.randint(low=0, high=10, size=(10,))}}\n\n# And checking how it traverses through the network\ncheck_output = simple_network(check_batch)\n\nprint('output:', check_batch['signals']['output'].shape)\nprint('classes:', check_batch['postprocessed']['class'].shape)\n\n# And saving the result\npprint(check_batch)\nanswer['check_batch'] = check_batch\n\n------------------\n\n\n\u001b[31m---------------------------------------------------------------------------\u001b[39m\n\u001b[31mAttributeError\u001b[39m                            Traceback (most recent call last)\n\u001b[36mCell\u001b[39m\u001b[36m \u001b[39m\u001b[32mIn[9]\u001b[39m\u001b[32m, line 3\u001b[39m\n\u001b[32m      1\u001b[39m \u001b[38;5;66;03m# simple_network = src.models.feedforward.deep_batchnorm_net.DeepFullyConnectedNet(\u001b[39;00m\n\u001b[32m      2\u001b[39m \u001b[38;5;66;03m# simple_network = src.models.feedforward.deep_batchnorm_net.DeepFullyConnectedNet(\u001b[39;00m\n\u001b[32m----> \u001b[39m\u001b[32m3\u001b[39m simple_network = src.models.feedforward.deep_batchnorm_net.DeepFullyConnectedNet(\n\u001b[32m      4\u001b[39m     dim_input=\u001b[32m28\u001b[39m * \u001b[32m28\u001b[39m,\n\u001b[32m      5\u001b[39m     dim_embed=\u001b[32m64\u001b[39m,\n\u001b[32m      6\u001b[39m     dim_output=\u001b[32m10\u001b[39m,\n\n\u001b[31mAttributeError\u001b[39m: module 'src.models.feedforward' has no attribute 'deep_batchnorm_net'\n\n"
+    "correct": 0.9411764705882353,
+    "testStatus": [
+        {
+            "name": "root -> seed_check -> python.random -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> python.random -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> python.random -> 2",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> python.random -> 3",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> python.randint -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> python.randint -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> python.randint -> 2",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> python.randint -> 3",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> numpy.random.rand",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> numpy.random.randn",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> numpy.random.randint",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> torch.rand",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> torch.randn",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> torch.randint",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> torch.backends.cudnn.deterministic",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> seed_check -> torch.cuda.is_available",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> X_train.dtype",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> y_train.dtype",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> X_valid.dtype",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> y_valid.dtype",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> X_train.shape -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> X_train.shape -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> X_valid.shape -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> X_valid.shape -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> X_train.mean",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> y_train.mean",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> X_valid.mean",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> y_valid.mean",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> check_batch -> data -> image",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> check_batch -> data -> label",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> check_batch -> signals -> output",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> check_batch -> postprocessed -> class",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> check_batch_bottleneck -> data -> image",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> check_batch_bottleneck -> data -> label",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> check_batch_bottleneck -> signals -> output",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> check_batch_bottleneck -> postprocessed -> class",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> check_batch_bottleneck_bn -> data -> image",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> check_batch_bottleneck_bn -> data -> label",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> check_batch_bottleneck_bn -> signals -> output",
+            "ok": false,
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.97563434"
+        },
+        {
+            "name": "root -> check_batch_bottleneck_bn -> postprocessed -> class",
+            "ok": false,
+            "status": "FAILED: answers do not match:\nMaximal average mismatch: 0.0001\nreceived average mismatch: 0.9"
+        },
+        {
+            "name": "root -> check_batch_bottleneck_residual -> data -> image",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> check_batch_bottleneck_residual -> data -> label",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> check_batch_bottleneck_residual -> signals -> output",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> check_batch_bottleneck_residual -> postprocessed -> class",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> loss_names -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> metric_names -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> test_loss_val -> ce",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> test_metrics_val -> accuracy -> 0",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> test_metrics_val -> accuracy -> 1",
+            "ok": true,
+            "status": "OK"
+        },
+        {
+            "name": "root -> train_batch",
+            "ok": false,
+            "status": "FAILED: Edit distance between strings is 9"
+        },
+        {
+            "name": "root -> valid_batch",
+            "ok": true,
+            "status": "OK"
+        }
+    ]
 }
