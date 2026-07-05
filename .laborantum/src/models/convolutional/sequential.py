@@ -19,10 +19,69 @@ class ResidualBottleneck(torch.nn.Module):
 
         ## YOUR CODE HERE
 
+        bottleneck_channels = max(out_channels // 4, 1)
+
+        self.block = torch.nn.Sequential(
+            prenormalization(in_channels),
+            activation(),
+
+            torch.nn.Conv2d(
+                in_channels,
+                bottleneck_channels,
+                kernel_size=1,
+                bias=False
+            ),
+
+            prenormalization(bottleneck_channels),
+            activation(),
+
+            torch.nn.Conv2d(
+                bottleneck_channels,
+                bottleneck_channels,
+                kernel_size=3,
+                stride=compression,
+                padding=1,
+                bias=False
+            ),
+
+            prenormalization(bottleneck_channels),
+            activation(),
+
+            torch.nn.Conv2d(
+                bottleneck_channels,
+                out_channels,
+                kernel_size=1,
+                bias=False
+            ),
+
+            postnormalization(out_channels),
+    )
+
+        if residual:
+            if in_channels == out_channels and compression == 1:
+                self.bypass = torch.nn.Identity()
+            else:
+                self.bypass = torch.nn.Conv2d(
+                    in_channels,
+                    out_channels,
+                    kernel_size=1,
+                    stride=compression,
+                    bias=False
+                )
+        else:
+            self.bypass = torch.nn.Identity()
+
+
+
     def forward(self, signal):
         ## YOUR CODE HERE
 
-        return signal
+        out = self.block(signal)
+
+        if self.residual:
+            out = out + self.bypass(signal)
+        
+        return out
 
 
 class FullyConvolutionalNN(torch.nn.Module):
@@ -37,10 +96,53 @@ class FullyConvolutionalNN(torch.nn.Module):
         ## YOUR CODE HERE
         # Define network modules in the constructor
 
+        super().__init__()
+
+        levels = []
+
+        current_channels = in_channels
+
+        for level, channels in enumerate(mid_channels):
+
+            for _ in range(n_blocks[level]):
+                levels.append(block(current_channels, channels))
+                current_channels = channels
+
+            levels.append(
+                ResidualBottleneck(
+                    current_channels,
+                    channels,
+                    compression=2,
+                    residual=True,
+                    prenormalization=lambda c: torch.nn.BatchNorm2d(c),
+                    postnormalization=lambda c: torch.nn.BatchNorm2d(c),
+                    activation=torch.nn.ReLU
+                )
+            )
+            current_channels = channels
+
+        self.encoder = torch.nn.Sequential(*levels)
+
+        self.pool = torch.nn.AdaptiveAvgPool2d((1, 1))
+
+        self.classifier = torch.nn.Linear(
+            current_channels,
+            out_channels
+        )
+
+
 
     def __forward_kernel(self, signal):
         ## YOUR CODE HERE
         # Pass the signal through the modules in forward
+
+        if signal.ndim == 3:
+            signal = signal.unsqueeze(1)
+
+        signal = self.encoder(signal)
+        signal = self.pool(signal)
+        signal = signal.flatten(1)
+        signal = self.classifier(signal)
 
 
         return signal
@@ -63,6 +165,7 @@ class FullyConvolutionalNN(torch.nn.Module):
         signal = batch['signals']['output']
 
         ## YOUR CODE HERE
+        signal = torch.argmax(signal, dim=1)
 
         # Put the processed result into the batch
         batch['postprocessed'] = {'class': signal}

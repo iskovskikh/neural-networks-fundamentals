@@ -1,0 +1,14 @@
+artifact_uri: file:///home/arch/scripts/neural-networks-fundamentals/.laborantum/mlflow_logs/665985386370026847/a55ae85dfddc4eafb0aef854c24f1e0b/artifacts
+end_time: 1783275065170
+entry_point_name: ''
+experiment_id: '665985386370026847'
+lifecycle_stage: active
+run_id: a55ae85dfddc4eafb0aef854c24f1e0b
+run_name: fcnn_resnet_bn
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1783273851759
+status: 3
+tags: []
+user_id: root
