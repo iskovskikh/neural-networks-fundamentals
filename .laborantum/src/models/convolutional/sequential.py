@@ -87,7 +87,7 @@ class ResidualBottleneck(torch.nn.Module):
 class FullyConvolutionalNN(torch.nn.Module):
     def __init__(
             self,
-            block=lambda in_channels, out_channels: torch.nn.Conv2d(in_channels, out_channels, (1, 1)),
+            block=lambda in_channels, out_channels: torch.nn.Conv2d(in_channels, out_channels, (1, 1),),
             in_channels=1,
             mid_channels=[16, 32, 64, 128],
             out_channels=10,
@@ -109,16 +109,9 @@ class FullyConvolutionalNN(torch.nn.Module):
                 current_channels = channels
 
             levels.append(
-                ResidualBottleneck(
-                    current_channels,
-                    channels,
-                    compression=2,
-                    residual=True,
-                    prenormalization=lambda c: torch.nn.BatchNorm2d(c),
-                    postnormalization=lambda c: torch.nn.BatchNorm2d(c),
-                    activation=torch.nn.ReLU
-                )
+                block(current_channels, channels)
             )
+
             current_channels = channels
 
         self.encoder = torch.nn.Sequential(*levels)
